@@ -2,7 +2,7 @@
 
 The two generated files in this directory are extracted without modification from
 DekTec's BSD-licensed Linux driver source. They remain covered by DekTec's license in
-`../vendor/dektec-linux-sdk/LICENSE`.
+`DEKTEC-LICENSE`.
 
 Regenerate them with:
 
