@@ -1,0 +1,16 @@
+DtapiHwFuncScan: 0 (DTAPI_OK)
+DtDevice_AttachToSerial: 0 (DTAPI_OK)
+DtDevice_SetToInput: 0 (DTAPI_OK)
+DetectVidStd[0]: 0 (DTAPI_OK), standard=68
+DtDevice_SetIoConfig(1080i59.94): 0 (DTAPI_OK)
+DtInpChannel_AttachToPort: 0 (DTAPI_OK)
+DtInpChannel_SetRxControl(IDLE): 0 (DTAPI_OK)
+DtInpChannel_ClearFifo: 0 (DTAPI_OK)
+DtInpChannel_SetRxMode(SDI_FULL|10B): 0 (DTAPI_OK)
+DtInpChannel_SetRxControl(RCV): 0 (DTAPI_OK)
+GetMaxFifoSize: 0 (DTAPI_OK), bytes=50331648
+ReadFrame: 0 (DTAPI_OK), bytes=6187504
+GetFlags: 0 (DTAPI_OK), current=0x00000000 latched=0x00000000
+hardware functions: 1
+[0] device=351000322:1 description=DTU-351 port 1 serial=351000322 port=1 sdi=1 input=1 output=0
+CAPTURE_OK standard=68 bytes=6187504 first16=ffff0f00000000802db60412082080f7

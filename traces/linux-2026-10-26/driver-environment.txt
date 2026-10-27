@@ -1,0 +1,46 @@
+[387583.659114] Dtu: The Dtu driver V4.15.5.93 has loaded successfully.
+[387583.709147] Dtu: < EzUsbInit > FX3 firmware uploaded
+[387584.034165] usb 2-7: new SuperSpeed USB device number 4 using xhci_hcd
+[387584.045917] usb 2-7: LPM exit latency is zeroed, disabling LPM.
+[387584.046870] usb 2-7: New USB device found, idVendor=1297, idProduct=0333, bcdDevice= 0.00
+[387584.046879] usb 2-7: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[387584.046884] usb 2-7: Product: DTU-351
+[387584.046887] usb 2-7: Manufacturer: DekTec
+[387588.751893] Dtu: < DtIoConfigReadFromIniFile > Error reading config file /etc/DekTec/Dtu/351/Port1.ini. Error: fffffffeh
+[387588.751907] Dtu: < DtIoConfigReadFromIniFile > Error reading config file /etc/DekTec/Dtu/351000322/Port1.ini. Error: fffffffeh
+[387666.720794] Dtu: < DtuNonIpDetectVidStd > Port 1 is not in automatic rate detection mode
+[387666.727294] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387666.727455] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387666.727534] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387666.727614] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387666.727694] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387666.727773] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.799701] Dtu: < DtuNonIpDetectVidStd > Port 1 is not in automatic rate detection mode
+[387679.806347] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.806601] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.806732] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.806863] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.806995] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+[387679.807119] Dtu: < DtuEvtAsyncComplete > pUrb->status: 0xFFFFFFFE
+filename:       /lib/modules/6.17.0-41-generic/updates/dkms/Dtu.ko.zst
+srcversion:     9BE46FDB03FB60B559A3F8E
+vermagic:       6.17.0-41-generic SMP preempt mod_unload modversions
+blackmagic-io/16.4a1, 6.17.0-23-generic, x86_64: installed
+blackmagic-io/16.4a1, 6.17.0-41-generic, x86_64: installed
+blackmagic/16.4a1, 6.17.0-23-generic, x86_64: installed
+blackmagic/16.4a1, 6.17.0-41-generic, x86_64: installed
+dektec_dtu/2026.09.0, 6.17.0-41-generic, x86_64: installed
+iser/26.01.OFED.26.01.1.0.0.1, 6.17.0-23-generic, x86_64: installed (Original modules exist)
+iser/26.01.OFED.26.01.1.0.0.1, 6.17.0-41-generic, x86_64: installed (Original modules exist)
+isert/26.01.OFED.26.01.1.0.0.1, 6.17.0-23-generic, x86_64: installed (Original modules exist)
+isert/26.01.OFED.26.01.1.0.0.1, 6.17.0-41-generic, x86_64: installed (Original modules exist)
+kernel-mft-dkms/4.35.0.159, 6.17.0-23-generic, x86_64: installed
+kernel-mft-dkms/4.35.0.159, 6.17.0-41-generic, x86_64: installed
+mlnx-ofed-kernel/26.01.OFED.26.01.1.0.0.1, 6.17.0-23-generic, x86_64: installed (Original modules exist)
+mlnx-ofed-kernel/26.01.OFED.26.01.1.0.0.1, 6.17.0-41-generic, x86_64: installed (Original modules exist)
+nvidia/580.159.03, 6.17.0-23-generic, x86_64: installed
+nvidia/580.159.03, 6.17.0-41-generic, x86_64: installed
+srp/26.01.OFED.26.01.1.0.0.1, 6.17.0-23-generic, x86_64: installed (Original modules exist)
+srp/26.01.OFED.26.01.1.0.0.1, 6.17.0-41-generic, x86_64: installed (Original modules exist)
+xpmem/2601.0.9, 6.17.0-23-generic, x86_64: installed
+xpmem/2601.0.9, 6.17.0-41-generic, x86_64: installed
