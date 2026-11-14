@@ -181,6 +181,7 @@ int dtu351_open_first(dtu351_device **out, dtu351_device_info *info)
         break;
     }
     libusb_free_device_list(list, 1);
+    list = NULL;
     if (*out != NULL)
         return DTU351_OK;
 fail:
@@ -460,6 +461,7 @@ const char *dtu351_error_name(int status)
     case DTU351_ERROR_PROTOCOL: return "unexpected USB transfer length or descriptors";
     case DTU351_ERROR_FIRMWARE: return "invalid firmware image";
     case DTU351_ERROR_USB_SPEED: return "device is not operating at USB SuperSpeed";
+    case DTU351_ERROR_RECONFIGURE: return "capture reconfiguration requested";
     default:
         return status < 0 && status >= LIBUSB_ERROR_OTHER
             ? libusb_error_name(status) : "unknown error";

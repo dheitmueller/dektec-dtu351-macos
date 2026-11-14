@@ -52,11 +52,14 @@ struct stream_state {
     unsigned long completed;
     unsigned long transfer_limit;
     dtu351_data_callback callback;
+    dtu351_monitor_callback monitor;
+    unsigned monitor_interval_ms;
     void *opaque;
     int stopping;
     int cancel_sent;
     int result;
     double start_time;
+    double next_monitor_time;
 };
 
 static int transfer_status_error(enum libusb_transfer_status status)
@@ -141,11 +144,13 @@ static void cancel_pending(stream_state *state)
     }
 }
 
-int dtu351_capture_run(dtu351_device *device, int high_definition,
+int dtu351_capture_run_monitored(dtu351_device *device, int high_definition,
                        uint16_t receive_mode, dtu351_transport transport,
                        unsigned queue_depth,
                        unsigned long transfer_limit,
-                       dtu351_data_callback callback, void *opaque)
+                       dtu351_data_callback callback,
+                       dtu351_monitor_callback monitor,
+                       unsigned monitor_interval_ms, void *opaque)
 {
     stream_state state;
     int result;
@@ -158,6 +163,8 @@ int dtu351_capture_run(dtu351_device *device, int high_definition,
     state.queue_depth = queue_depth;
     state.transfer_limit = transfer_limit;
     state.callback = callback;
+    state.monitor = monitor;
+    state.monitor_interval_ms = monitor_interval_ms;
     state.opaque = opaque;
     state.result = DTU351_OK;
     state.slots = calloc(queue_depth, sizeof(*state.slots));
@@ -225,6 +232,7 @@ int dtu351_capture_run(dtu351_device *device, int high_definition,
             state.stopping = 1;
     }
     state.start_time = monotonic_seconds();
+    state.next_monitor_time = state.start_time;
     int debug_registers = getenv("DTU351_DEBUG_REGS") != NULL;
     unsigned debug_sample = 0;
     double next_debug_time = state.start_time;
@@ -236,6 +244,15 @@ int dtu351_capture_run(dtu351_device *device, int high_definition,
         if (result != LIBUSB_SUCCESS && result != LIBUSB_ERROR_INTERRUPTED) {
             state.result = result;
             state.stopping = 1;
+        }
+        if (!state.stopping && state.monitor &&
+            monotonic_seconds() >= state.next_monitor_time) {
+            if (state.monitor(state.opaque) != 0) {
+                state.result = DTU351_ERROR_RECONFIGURE;
+                state.stopping = 1;
+            }
+            state.next_monitor_time = monotonic_seconds() +
+                (double)state.monitor_interval_ms / 1000.0;
         }
         if (!state.stopping && state.completed == 0 &&
             monotonic_seconds() - state.start_time > 5.0) {
@@ -261,4 +278,15 @@ cleanup:
     }
     free(state.slots);
     return result;
+}
+
+int dtu351_capture_run(dtu351_device *device, int high_definition,
+                       uint16_t receive_mode, dtu351_transport transport,
+                       unsigned queue_depth,
+                       unsigned long transfer_limit,
+                       dtu351_data_callback callback, void *opaque)
+{
+    return dtu351_capture_run_monitored(
+        device, high_definition, receive_mode, transport, queue_depth,
+        transfer_limit, callback, NULL, 0, opaque);
 }

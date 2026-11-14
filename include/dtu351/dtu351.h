@@ -56,6 +56,7 @@ typedef enum dtu351_video_standard {
 } dtu351_video_standard;
 
 typedef int (*dtu351_data_callback)(const void *data, size_t length, void *opaque);
+typedef int (*dtu351_monitor_callback)(void *opaque);
 
 typedef enum dtu351_transport {
     DTU351_TRANSPORT_BULK = 0,
@@ -69,6 +70,7 @@ enum {
     DTU351_ERROR_PROTOCOL = -1002,
     DTU351_ERROR_FIRMWARE = -1003,
     DTU351_ERROR_USB_SPEED = -1004,
+    DTU351_ERROR_RECONFIGURE = -1005,
 };
 
 int dtu351_enumerate(dtu351_device_info *devices, size_t capacity, size_t *count);
@@ -101,6 +103,14 @@ int dtu351_capture_run(dtu351_device *device, int high_definition,
                        unsigned queue_depth,
                        unsigned long transfer_limit,
                        dtu351_data_callback callback, void *opaque);
+int dtu351_capture_run_monitored(
+                       dtu351_device *device, int high_definition,
+                       uint16_t receive_mode, dtu351_transport transport,
+                       unsigned queue_depth,
+                       unsigned long transfer_limit,
+                       dtu351_data_callback callback,
+                       dtu351_monitor_callback monitor,
+                       unsigned monitor_interval_ms, void *opaque);
 
 const char *dtu351_error_name(int status);
 
